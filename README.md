@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MRR Arena – Startup Battle Arena
 
-## Getting Started
+A fun viral web app where you choose two indie startups from the TrustMRR API and let them "fight" in a Pokémon-like arena. MRR = HP, Growth = Attack/Speed, Profit Margin = Defense. Funny random commentary + animated battle. Super-shareable on X.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Next.js 16 (App Router + Server Actions)
+- TypeScript
+- Tailwind CSS + shadcn/ui
+- Motion (animation)
+- lucide-react
+- html-to-image (share screenshot)
+- canvas-confetti
+- Sonner (toasts)
+
+## Setup
+
+### 1. Add your API key
+
+Create `.env.local` in the project root with:
+
+```
+TRUSTMRR_API_KEY=tmrr_your_actual_key_here
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Get your API key from [TrustMRR](https://trustmrr.com).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Run the app
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Deploy on Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push your code to GitHub
+2. Import the project in [Vercel](https://vercel.com)
+3. Add environment variables:
+   - `TRUSTMRR_API_KEY` – your TrustMRR API key
+   - `NEXT_PUBLIC_BASE_URL` – your production URL (e.g. `https://mrrarena.vercel.app`)
+4. Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## How it works
 
-## Deploy on Vercel
+- **Homepage**: Select two startups (or use Random Battle), then click Battle!
+- **Battle page**: Watch the auto-battle with 5–8 rounds, HP bars, attack animations, and funny commentary
+- **Share**: Copy screenshot + tweet text, or share directly on X
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/
+  page.tsx                    # Homepage
+  battle/[slugs]/page.tsx     # Battle page
+  battle/loading.tsx
+  not-found.tsx
+components/
+  HomePageClient.tsx
+  FighterCard.tsx
+  Arena.tsx
+  HPBar.tsx
+  Commentary.tsx
+  StartupAvatar.tsx
+  StartupSelectorModal.tsx
+  ShareButton.tsx
+  ui/                         # shadcn components
+lib/
+  trustmrr.ts                 # Types + TrustMRR fetch helpers
+  commentary.ts               # Battle commentary generator
+  confetti.ts
+  utils.ts
+```

@@ -66,7 +66,6 @@ components/
   Commentary.tsx
   StartupAvatar.tsx
   StartupSelectorModal.tsx
-  ShareButton.tsx
   ui/                         # shadcn components
 lib/
   trustmrr.ts                 # Types + TrustMRR fetch helpers

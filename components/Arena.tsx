@@ -6,7 +6,6 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Commentary } from "./Commentary";
 import { FighterPanel } from "./FighterPanel";
-import { ShareButton } from "./ShareButton";
 import type { Startup } from "@/lib/trustmrr";
 import { generateCommentary } from "@/lib/commentary";
 import { triggerConfetti } from "@/lib/confetti";
@@ -258,14 +257,6 @@ export function Arena({ startup1, startup2, slug1, slug2 }: ArenaProps) {
                     </Button>
                   </Link>
                 </div>
-                <ShareButton
-                  slug1={slug1}
-                  slug2={slug2}
-                  winnerName={winner === 1 ? startup1.name : startup2.name}
-                  mrr1={startup1.mrr}
-                  mrr2={startup2.mrr}
-                  containerRef={containerRef}
-                />
               </motion.div>
             )}
           </div>
